@@ -15,3 +15,4 @@ Now you can start your local server using
 ```
 nodemon app.js
 ```
+local server will be start at port 3000
