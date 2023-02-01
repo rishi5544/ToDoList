@@ -1,0 +1,108 @@
+<%- include("header") -%>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">To Do List</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <p id="cart-total">Hello <%= user %> </p>
+        <a class="nav-item nav-link active"  href="<%= logoutLink %>">Log Out</span></a>
+         
+      </div>
+    </div>
+  </nav>
+
+  <div class="box" id="heading">
+    <h1>
+      <%= listTitle %>
+    </h1>
+  </div>
+
+  <div class="box">
+
+
+    <% newPendingListItems.forEach(function(item){ %>
+
+      <form  method="post">
+        <div class="item border" >
+          <input class="complete-checkbox" type="checkbox" name="checkbox" >
+          <p>
+            <%=item.name%>
+          </p>
+        </div>
+        <input type="hidden" name="objectId" value="<%=item._id%>"></input>
+        <input type="hidden" name="username" value="<%= user %>"></input>
+        <div class="border option" style="padding-left: 40%;">
+          
+          <button class="btn delete-btn" type="submit"><i class="fa fa-trash"></i></button>
+          <button class="btn close-btn" type="submit"><i class="fa fa-close"></i></button>
+        </div>
+
+      </form>
+      <% }) %>
+
+      <% newClosedListItems.forEach(function(item){ %>
+        <form  method="post">
+          <div class="item border" >
+            <!-- <input type="checkbox" name="checkbox"> -->
+            <p class="closed">
+              <%=item.name%>
+            </p>
+          </div>
+          <input type="hidden" name="objectId" value="<%=item._id%>"></input>
+          <input type="hidden" name="username" value="<%= user %>"></input>
+          <div class="border" style="padding-left: 40%;">
+            
+            <button class="btn delete-btn" type="submit"><i class="fa fa-trash"></i></button>
+            <button class="btn close-btn" type="submit"><i class="fa fa-undo"></i></button>
+          </div>
+  
+        </form>
+        <% }) %>
+
+        <% newCompletedListItems.forEach(function(item){ %>
+
+          <form  method="post">
+            <div class="item border" >
+              <!-- <input type="checkbox" name="checkbox" checked="true"> -->
+              <p class="completed">
+                <%=item.name%>
+              </p>
+            </div>
+            <input type="hidden" name="objectId" value="<%=item._id%>"></input>
+            <input type="hidden" name="username" value="<%= user %>"></input>
+            <div class="border" style="padding-left: 40%;">
+              
+              <button class="btn delete-btn" type="submit"><i class="fa fa-trash"></i></button>
+              <!-- <button class="btn close-btn" type="submit"><i class="fa fa-close"></i></button> -->
+            </div>
+    
+          </form>
+          <% }) %>
+
+      <table>
+        <form class="item" action="/list/?user=<%= user %> " method="post">
+
+          <tr>
+            <div style="text-decoration: darkgray;">
+              <input type="number" min="1" max="9" name="priorityNumber" placeholder="Priority Number (1-9)" autocomplete="off">
+            </div>
+          </tr>
+          <tr>
+            <div>
+              <input type="text" name="newItem" placeholder="New Task" autocomplete="off">
+              <button class="add-button" type="submit">+</button>
+            </div>
+          </tr>
+          
+        </form>
+      </table>
+        
+  </div>
+ 
+
+  
+
+  <%- include("footer") -%>
