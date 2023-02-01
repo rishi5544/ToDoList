@@ -13,6 +13,9 @@ npm i
 ```
 Now you can start your local server using
 ```
-nodemon app.js
+node app.js
 ```
-local server will be start at port 3000
+local server will be start at port 3000 ,then type in  you browser
+```
+http://localhost:3000
+```
